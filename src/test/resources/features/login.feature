@@ -1,10 +1,10 @@
 @SetupDriver
 @Login
 Feature: Login
-  As a user
-  I want to login the app
-  In order to view all the information
+  Como usuario
+  Quiero logarme en la aplicación
+  Para acceder a mi área personal
 
   @GoHomePage
-  Scenario: Navigate to the home page
-    Given I am at the home page
+  Scenario: Hacer login correcto
+    Given estoy en la pagina de login

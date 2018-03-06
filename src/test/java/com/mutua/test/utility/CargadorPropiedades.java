@@ -16,7 +16,7 @@ public class CargadorPropiedades {
 	
 	public Properties cargarPropiedades() {
 		Properties props = new Properties();
-		String filePath = new File("parametros.properties").getAbsolutePath();
+		String filePath = new File((System.getProperty("user.dir") + "/src/test/resources/parametros.properties")).getAbsolutePath();
 		File file = new File(filePath);
 		FileInputStream fileInput = null;
 		try {
