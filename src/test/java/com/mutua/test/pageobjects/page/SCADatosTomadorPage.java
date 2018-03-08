@@ -1,10 +1,11 @@
 package com.mutua.test.pageobjects.page;
 
 import com.mutua.test.pageobjects.BasePage;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SCADatosTomadorPage extends BasePage {
@@ -109,7 +110,8 @@ public class SCADatosTomadorPage extends BasePage {
 
     public void seleccionarProducto(String producto) {
 		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(cmb_producto));
-		cmb_producto.sendKeys(producto);
+        Select dropdown = new Select(driver.findElement(By.id("producto.codigo")));
+        dropdown.selectByValue("206");
     }
 
 	public void rellenarCodigoPostal(String codpostal) {

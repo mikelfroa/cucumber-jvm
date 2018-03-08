@@ -1,13 +1,12 @@
 package com.mutua.test.utility;
 
+import com.mutua.test.pageobjects.BasePage;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GeneralUtils {
-
-    private WebDriver driver;
+public class GeneralUtils extends BasePage {
 
     public static void waitForPageLoaded() throws InterruptedException {
         Thread.sleep(2000);
@@ -17,8 +16,8 @@ public class GeneralUtils {
             }
         };
         try {
-            Thread.sleep(2000);
-            WebDriverWait wait = new WebDriverWait(new DriverFactory().getDriver(), 30);
+            Thread.sleep(1000);
+            WebDriverWait wait = new WebDriverWait(BasePage.driver, 30);
             wait.until(expectation);
         } catch (Throwable error) {
             Assert.fail("Timeout waiting for Page Load Request to complete.");
