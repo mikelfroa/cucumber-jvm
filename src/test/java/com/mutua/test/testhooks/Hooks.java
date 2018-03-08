@@ -1,8 +1,9 @@
 package com.mutua.test.testhooks;
 
+import com.mutua.test.pageobjects.BasePage;
 import com.mutua.test.pageobjects.page.SegDecPage;
-import com.mutua.test.utility.CargadorPropiedades;
-import com.mutua.test.utility.DriverFactory;
+import com.mutua.test.utility.BrowserFactory;
+import com.mutua.test.utility.Navigation;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -13,18 +14,18 @@ import java.net.MalformedURLException;
 public class Hooks {
 
     private WebDriver driver;
-    private CargadorPropiedades cargador = new CargadorPropiedades();
+
 
     @Before(order = 1, value = "@SetupDriver")
     public void setupSeleniumConnectionHook() throws Exception {
-        driver = new DriverFactory().getDriver();
+        BrowserFactory.getBrowser(System.getProperty("browser"));
+
     }
 
     @Before("@IrPaginaCotizacion")
-    public void goLoginPage() throws MalformedURLException {
-        driver = new DriverFactory().getDriver();
-        driver.get((String)cargador.cargarPropiedades().get("urlCotizacion"));
-        SegDecPage decPage = new SegDecPage(driver);
+    public void goLoginPage()  {
+        Navigation.goToPage("PaginaCotizacion");
+        SegDecPage decPage = new SegDecPage();
         decPage.calcularPrecio();
 
     }
@@ -32,10 +33,9 @@ public class Hooks {
     @After("@SetupDriver")
     public void tearDownSeleniumConnectionHook(Scenario scenario) throws MalformedURLException {
         if (scenario.isFailed()) {
-            driver = new DriverFactory().getDriver();
-            scenario.write("Current page " + driver.getCurrentUrl());
+            scenario.write("Current page " + BasePage.driver.getCurrentUrl());
         }
-        new DriverFactory().destroyDriver();
+        BrowserFactory.closeBrowser();
 
     }
 

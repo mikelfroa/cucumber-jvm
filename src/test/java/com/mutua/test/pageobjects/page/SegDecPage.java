@@ -12,10 +12,6 @@ public class SegDecPage extends BasePage {
 	@FindBy(xpath = "//*[@href='https://wwwa.mutua.es/seguros-decesos/action/precarga-cotizacion']")
 	private WebElement btn_calcPrecio;
 
-	public SegDecPage(WebDriver driver) {
-		super(driver);
-	}
-
 	public void calcularPrecio(){
 		btn_calcPrecio.click();
     }

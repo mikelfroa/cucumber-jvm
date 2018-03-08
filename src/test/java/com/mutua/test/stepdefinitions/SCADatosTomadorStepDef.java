@@ -16,34 +16,31 @@ import java.util.Calendar;
 
 public class SCADatosTomadorStepDef {
 
-    private WebDriver driver;
     SCADatosTomadorPage scaDatosTomadorPage;
 
     @Given("^estoy en la pagina de precarga de cotización$")
     public void estoyEnLaPaginaDePrecargaDeCotización() throws Throwable {
-        driver = new DriverFactory().getDriver();
         GeneralUtils.waitForPageLoaded();
-        Assert.assertTrue("Estoy en la página", driver.getCurrentUrl().equalsIgnoreCase("https://wwwa.mutua.es/seguros-decesos/action/precarga-cotizacion"));
+        scaDatosTomadorPage = new SCADatosTomadorPage();
+        Assert.assertTrue("Estoy en la página", scaDatosTomadorPage.getURL().equalsIgnoreCase("https://wwwa.mutua.es/seguros-decesos/action/precarga-cotizacion"));
 
     }
 
     @And("^introduzco la fecha de nacimiento: (\\d+), (\\d+), (\\d+)$")
-    public void introduzcoLaFechaDeNacimiento(String dia, String mes, String ano) throws Throwable {
-        driver = new DriverFactory().getDriver();
-        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+    public void introduzcoLaFechaDeNacimiento(String dia, String mes, String ano)  {
+        scaDatosTomadorPage = new SCADatosTomadorPage();
         scaDatosTomadorPage.rellenarFechaNacimiento(dia, mes, ano);
     }
 
     @And("^introduzco el nif: \"([^\"]*)\"$")
-    public void introduzcoElNif(String nif) throws Throwable {
-        driver = new DriverFactory().getDriver();
-        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+    public void introduzcoElNif(String nif)  {
+        scaDatosTomadorPage = new SCADatosTomadorPage();
         scaDatosTomadorPage.rellenarNif(nif);
     }
 
     @And("^verifico la fecha de efecto$")
     public void verificoLaFechaDeEfecto() throws Throwable {
-        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage = new SCADatosTomadorPage();
         try {
             Calendar c = Calendar.getInstance();
             c.set(Calendar.DAY_OF_MONTH, 1);
@@ -58,7 +55,7 @@ public class SCADatosTomadorStepDef {
 
     @And("^selecciono el producto: \"([^\"]*)\"$")
     public void seleccionoElProducto(String producto)  {
-        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage = new SCADatosTomadorPage();
         scaDatosTomadorPage.seleccionarProducto(producto);
     }
 
@@ -75,35 +72,35 @@ public class SCADatosTomadorStepDef {
 
     @Y("^añado nuevo asegurado$")
     public void añadoNuevoAsegurado()  {
-        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage = new SCADatosTomadorPage();
         scaDatosTomadorPage.añadirAsegurado();
     }
 
     @Y("^introduzco la fecha de nacimiento del segundo asegurado: (\\d+), (\\d+), (\\d+)$")
     public void introduzcoLaFechaDeNacimientoDelSegundoAsegurado(String dia, String mes, String ano) throws Throwable {
-        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage = new SCADatosTomadorPage();
         scaDatosTomadorPage.rellenarFechaNacimientoNuevoAsegurado(dia,mes,ano);
     }
 
     @Y("^acepto las condiciones generales$")
     public void aceptoLasCondicionesGenerales() throws InterruptedException {
-        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage = new SCADatosTomadorPage();
         scaDatosTomadorPage.aceptoCondGen();
         Thread.sleep(10000);
     }
 
     @Cuando("^calculo la tarificación$")
     public void calculoLaTarificación() throws InterruptedException {
-        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage = new SCADatosTomadorPage();
         scaDatosTomadorPage.calculoTarifa();
         Thread.sleep(10000);
     }
 
     @Entonces("^estoy en la pagina de presupuesto$")
     public void estoyEnLaPaginaDePresupuesto() throws Throwable {
-        driver = new DriverFactory().getDriver();
+        scaDatosTomadorPage = new SCADatosTomadorPage();
         GeneralUtils.waitForPageLoaded();
-        Assert.assertTrue("Estoy en la página de presupuesto", driver.getCurrentUrl().equalsIgnoreCase("https://wwwa.mutua.es/seguros-decesos/action/cotizarDecesos"));
+        Assert.assertTrue("Estoy en la página de presupuesto", scaDatosTomadorPage.getURL().equalsIgnoreCase("https://wwwa.mutua.es/seguros-decesos/action/cotizarDecesos"));
 
     }
 
@@ -127,7 +124,7 @@ public class SCADatosTomadorStepDef {
 
     @Y("^selecciono que el tomador es también el asegurado$")
     public void seleccionoSiElTomadorEsTambiénElAsegurado() throws Throwable {
-        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage = new SCADatosTomadorPage();
         scaDatosTomadorPage.tomadorEsAsegurado();
 
     }

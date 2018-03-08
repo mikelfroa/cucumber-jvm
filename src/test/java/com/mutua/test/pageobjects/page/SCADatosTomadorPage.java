@@ -9,10 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SCADatosTomadorPage extends BasePage {
 
-	public SCADatosTomadorPage(WebDriver driver) {
-		super(driver);
-	}
-
 	/* Identificador Tomador Dia Nacimiento */
 	@FindBy(id = "tomador.diaNacimiento")
 	private WebElement fld_tomadorDiaNac;
@@ -87,6 +83,10 @@ public class SCADatosTomadorPage extends BasePage {
 
 	@FindBy(xpath = ".//*[@id='labelCond']/span/a")
 	private WebElement linkCondiciones;
+
+	public String getURL(){
+	    return driver.getCurrentUrl();
+    }
 
 	public void rellenarFechaNacimiento(String dia, String mes, String ano){
 		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(fld_tomadorDiaNac));
