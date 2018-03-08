@@ -2,28 +2,24 @@ package com.mutua.test.testhooks;
 
 import com.mutua.test.pageobjects.BasePage;
 import com.mutua.test.pageobjects.page.SegDecPage;
-import com.mutua.test.utility.BrowserFactory;
 import com.mutua.test.utility.Navigation;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.TakesScreenshot;
 
-import java.net.MalformedURLException;
+import static org.openqa.selenium.OutputType.BYTES;
 
 public class Hooks {
 
-    private WebDriver driver;
-
-
     @Before(order = 1, value = "@SetupDriver")
-    public void setupSeleniumConnectionHook() throws Exception {
-        BrowserFactory.getBrowser(System.getProperty("browser"));
+    public void setupUp()  {
+        BasePage.getBrowser(System.getProperty("browser"));
 
     }
 
     @Before("@IrPaginaCotizacion")
-    public void goLoginPage()  {
+    public void irPagCotizacion()  {
         Navigation.goToPage("PaginaCotizacion");
         SegDecPage decPage = new SegDecPage();
         decPage.calcularPrecio();
@@ -31,11 +27,17 @@ public class Hooks {
     }
 
     @After("@SetupDriver")
-    public void tearDownSeleniumConnectionHook(Scenario scenario) throws MalformedURLException {
+    public void tearDown(Scenario scenario)  {
         if (scenario.isFailed()) {
             scenario.write("Current page " + BasePage.driver.getCurrentUrl());
+            if (BasePage.driver instanceof TakesScreenshot) {
+                TakesScreenshot camera = (TakesScreenshot) BasePage.driver;
+                byte[] screenshot = camera.getScreenshotAs(BYTES);
+                scenario.embed(screenshot, "image/png");
+            }
+
         }
-        BrowserFactory.closeBrowser();
+        BasePage.closeBrowser();
 
     }
 

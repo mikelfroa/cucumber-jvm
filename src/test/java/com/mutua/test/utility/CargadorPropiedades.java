@@ -7,12 +7,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class CargadorPropiedades {
-
-
-	public String cargarPropiedad(String parameter) {
-
-		return System.getProperty(parameter);
-	}
 	
 	public Properties cargarPropiedades() {
 		Properties props = new Properties();
