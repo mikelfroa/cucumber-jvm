@@ -11,10 +11,8 @@ import cucumber.api.java.es.Entonces;
 import cucumber.api.java.es.Y;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 
 public class SCADatosTomadorStepDef {
 
@@ -41,7 +39,6 @@ public class SCADatosTomadorStepDef {
         driver = new DriverFactory().getDriver();
         scaDatosTomadorPage = new SCADatosTomadorPage(driver);
         scaDatosTomadorPage.rellenarNif(nif);
-        Thread.sleep(20000);
     }
 
     @And("^verifico la fecha de efecto$")
@@ -60,68 +57,78 @@ public class SCADatosTomadorStepDef {
     }
 
     @And("^selecciono el producto: \"([^\"]*)\"$")
-    public void seleccionoElProducto(String producto) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void seleccionoElProducto(String producto)  {
+        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage.seleccionarProducto(producto);
     }
 
     @And("^introduzco el codigo postal: \"([^\"]*)\"$")
-    public void introduzcoElCodigoPortal(String arg0) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void introduzcoElCodigoPortal(String codpostal)  {
+        scaDatosTomadorPage.rellenarCodigoPostal(codpostal);
     }
 
     @And("^selecciono la localidad: \"([^\"]*)\"$")
-    public void seleccionoLaLocalidad(String arg0) throws Throwable {
+    public void seleccionoLaLocalidad(String arg0)  {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
 
     @Y("^añado nuevo asegurado$")
-    public void añadoNuevoAsegurado() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void añadoNuevoAsegurado()  {
+        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage.añadirAsegurado();
     }
 
     @Y("^introduzco la fecha de nacimiento del segundo asegurado: (\\d+), (\\d+), (\\d+)$")
-    public void introduzcoLaFechaDeNacimientoDelSegundoAsegurado(int arg0, int arg1, int arg2) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void introduzcoLaFechaDeNacimientoDelSegundoAsegurado(String dia, String mes, String ano) throws Throwable {
+        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage.rellenarFechaNacimientoNuevoAsegurado(dia,mes,ano);
     }
 
     @Y("^acepto las condiciones generales$")
-    public void aceptoLasCondicionesGenerales() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void aceptoLasCondicionesGenerales() throws InterruptedException {
+        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage.aceptoCondGen();
+        Thread.sleep(10000);
     }
 
     @Cuando("^calculo la tarificación$")
-    public void calculoLaTarificación() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void calculoLaTarificación() throws InterruptedException {
+        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage.calculoTarifa();
+        Thread.sleep(10000);
     }
 
     @Entonces("^estoy en la pagina de presupuesto$")
     public void estoyEnLaPaginaDePresupuesto() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        driver = new DriverFactory().getDriver();
+        GeneralUtils.waitForPageLoaded();
+        Assert.assertTrue("Estoy en la página de presupuesto", driver.getCurrentUrl().equalsIgnoreCase("https://wwwa.mutua.es/seguros-decesos/action/cotizarDecesos"));
+
     }
 
     @Y("^las frecuencias de pago sean correctas$")
-    public void lasFrecuenciasDePagoSeanCorrectas() throws Throwable {
+    public void lasFrecuenciasDePagoSeanCorrectas()  {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
 
     @Cuando("^añado pack ADN$")
-    public void añadoPackADN() throws Throwable {
+    public void añadoPackADN()  {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
 
     @Y("^recalculo la tarificación$")
-    public void recalculoLaTarificación() throws Throwable {
+    public void recalculoLaTarificación()  {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
+    }
+
+    @Y("^selecciono que el tomador es también el asegurado$")
+    public void seleccionoSiElTomadorEsTambiénElAsegurado() throws Throwable {
+        scaDatosTomadorPage = new SCADatosTomadorPage(driver);
+        scaDatosTomadorPage.tomadorEsAsegurado();
+
     }
 }

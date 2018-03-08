@@ -32,37 +32,19 @@ public class DriverFactory {
         }
         switch (browserName) {
             case "firefox":
-                if (System.getProperty("grid") != null && !System.getProperty("grid").isEmpty()){
-                    capabilities = DesiredCapabilities.firefox();
-                    driver = new RemoteWebDriver(new URL(Constants.gridMachine), capabilities);
-                    driver.manage().window().maximize();
-                }else if (driver == null){
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     driver.manage().window().maximize();
-                }
                 break;
             case "chrome":
-                if (System.getProperty("grid") != null && !System.getProperty("grid").isEmpty()){
-                    capabilities = DesiredCapabilities.chrome();
-                    driver = new RemoteWebDriver(new URL(Constants.gridMachine), capabilities);
-                    driver.manage().window().maximize();
-                }else {
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     driver.manage().window().maximize();
-                }
                 break;
             case "edge":
-                if (System.getProperty("grid") != null && !System.getProperty("grid").isEmpty()){
-                    capabilities = DesiredCapabilities.edge();
-                    driver = new RemoteWebDriver(new URL(Constants.gridMachine), capabilities);
-                    driver.manage().window().maximize();
-                }else {
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
                     driver.manage().window().maximize();
-                }
                 break;
         }
     }

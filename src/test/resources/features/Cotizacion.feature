@@ -12,10 +12,10 @@ Característica: Cotización
     Dado estoy en la pagina de precarga de cotización
     Y introduzco la fecha de nacimiento: 14, 02, 1981
     Y introduzco el nif: "71215129E"
-#    Y verifico la fecha de efecto
-    Y selecciono el producto: "DECESOS COMPLETO"
+#    Y selecciono el producto: "DECESOS COMPLETO"
     Y introduzco el codigo postal: "28045"
-    Y selecciono la localidad: "MADRID"
+#    Y selecciono la localidad: "MADRID"
+    Y selecciono que el tomador es también el asegurado
     Y añado nuevo asegurado
     Y introduzco la fecha de nacimiento del segundo asegurado: 01, 01, 1981
     Y acepto las condiciones generales
@@ -29,7 +29,6 @@ Característica: Cotización
     Dado estoy en la pagina de precarga de cotización
     Y introduzco la fecha de nacimiento: 17, 06, 1982
     Y introduzco el nif: "53425199v"
-    Y verifico la fecha de efecto
     Y selecciono el producto: "DECESOS COMPLETO"
     Y introduzco el codigo postal: "28045"
     Y selecciono la localidad: "MADRID"

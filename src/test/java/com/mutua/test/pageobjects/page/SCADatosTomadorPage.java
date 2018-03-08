@@ -4,9 +4,14 @@ import com.mutua.test.pageobjects.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SCADatosTomadorPage extends BasePage {
+
+	public SCADatosTomadorPage(WebDriver driver) {
+		super(driver);
+	}
 
 	/* Identificador Tomador Dia Nacimiento */
 	@FindBy(id = "tomador.diaNacimiento")
@@ -46,7 +51,7 @@ public class SCADatosTomadorPage extends BasePage {
 
 	/* Identificador Asegurado Dia Nacimiento */
 	@FindBy(id = "asegurados.diaNacimiento1")
-	private WebElement aseguradoDiaNac;
+	private WebElement fld_aseguradoDiaNac;
 
 	/* Identificador Asegurado Mes Nacimiento */
 	@FindBy(id = "asegurados.mesNacimiento1")
@@ -70,35 +75,74 @@ public class SCADatosTomadorPage extends BasePage {
 
 	/* Identificador Nuevo Asegurado */
 	@FindBy(id = "nuevoAsegurado")
-	private WebElement nuevoAsegurado;
+	private WebElement btn_nuevoAsegurado;
 
 	/* Identificador Condiciones Generales */
 	@FindBy(id = "CondicionesGenerales")
-	private WebElement condicionesGenerales;
+	private WebElement ckb_condicionesGenerales;
 
 	/* Identificador Calcular Precio */
 	@FindBy(id = "tarificar")
-	private WebElement tarificar;
+	private WebElement btn_tarificar;
 
 	@FindBy(xpath = ".//*[@id='labelCond']/span/a")
 	private WebElement linkCondiciones;
 
-	public SCADatosTomadorPage(WebDriver driver) {
-		super(driver);
-	}
-
 	public void rellenarFechaNacimiento(String dia, String mes, String ano){
-        fld_tomadorDiaNac.sendKeys(dia);
-        fld_tomadorMesNac.sendKeys(mes);
-        fld_tomadorAnioNac.sendKeys(ano);
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(fld_tomadorDiaNac));
+		fld_tomadorDiaNac.sendKeys(dia);
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(fld_tomadorMesNac));
+		fld_tomadorMesNac.sendKeys(mes);
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(fld_tomadorAnioNac));
+		fld_tomadorAnioNac.sendKeys(ano);
     }
 
     public void rellenarNif(String nif){
-        fld_tomadorNif.sendKeys(nif);
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(fld_tomadorNif));
+		fld_tomadorNif.sendKeys(nif);
     }
 
     public String verFechaEfecto(){
-	    return cmb_fechaEfecto.getText();
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(cmb_fechaEfecto));
+		return cmb_fechaEfecto.getText();
     }
 
+    public void seleccionarProducto(String producto) {
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(cmb_producto));
+		cmb_producto.sendKeys(producto);
+    }
+
+	public void rellenarCodigoPostal(String codpostal) {
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(fld_codigoPostal));
+		fld_codigoPostal.sendKeys(codpostal);
+	}
+
+	public void añadirAsegurado() {
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(btn_nuevoAsegurado));
+		btn_nuevoAsegurado.click();
+	}
+
+	public void rellenarFechaNacimientoNuevoAsegurado(String dia, String mes, String ano){
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(fld_asegurado2DiaNac));
+		fld_asegurado2DiaNac.sendKeys(dia);
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(asegurado2MesNac));
+		asegurado2MesNac.sendKeys(mes);
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(asegurado2AnioNac));
+		asegurado2AnioNac.sendKeys(ano);
+	}
+
+	public void aceptoCondGen() {
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(ckb_condicionesGenerales));
+		ckb_condicionesGenerales.click();
+	}
+
+	public void calculoTarifa() {
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(btn_tarificar));
+		btn_tarificar.click();
+	}
+
+	public void tomadorEsAsegurado() {
+		new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(rad_asegurado));
+		rad_asegurado.click();
+	}
 }

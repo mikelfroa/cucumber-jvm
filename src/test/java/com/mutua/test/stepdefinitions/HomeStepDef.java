@@ -1,8 +1,8 @@
 package com.mutua.test.stepdefinitions;
 
 import com.mutua.test.utility.DriverFactory;
+
 import com.mutua.test.utility.GeneralUtils;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
