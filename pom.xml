@@ -12,8 +12,8 @@
         <cucumber.version>1.2.4</cucumber.version>
         <selenium.version>3.8.1</selenium.version>
         <junit.version>4.12</junit.version>
-        <surefire.maven.version>2.19.1</surefire.maven.version>
-        <compiler.maven.version>1.8</compiler.maven.version>
+        <failsafe.maven.version>2.19.1</failsafe.maven.version>
+        <compiler.maven.version>3.5.1</compiler.maven.version>
     </properties>
 
     <build>
@@ -21,16 +21,32 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>${compiler.maven.version}</version>
                 <configuration>
-                    <source>${compiler.maven.version}</source>
-                    <target>${compiler.maven.version}</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire.maven.version}</version>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${failsafe.maven.version}</version>
+                <executions>
+                    <execution>
+                        <id>failsafe-integration-tests</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>failsafe-verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>net.masterthought</groupId>
@@ -76,6 +92,12 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>2.1.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

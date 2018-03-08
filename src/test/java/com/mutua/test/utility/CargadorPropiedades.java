@@ -22,8 +22,6 @@ public class CargadorPropiedades {
 		try {
 			fileInput = new FileInputStream(file);
 			props.load(fileInput);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

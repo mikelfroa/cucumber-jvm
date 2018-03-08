@@ -95,6 +95,10 @@ public class SCADatosTomadorPage extends BasePage {
 
     public void rellenarNif(String nif){
         fld_tomadorNif.sendKeys(nif);
-
     }
+
+    public String verFechaEfecto(){
+	    return cmb_fechaEfecto.getText();
+    }
+
 }

@@ -17,7 +17,7 @@ public class GeneralUtils {
             }
         };
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             WebDriverWait wait = new WebDriverWait(new DriverFactory().getDriver(), 30);
             wait.until(expectation);
         } catch (Throwable error) {

@@ -1,5 +1,6 @@
 package com.mutua.test.testhooks;
 
+import com.mutua.test.pageobjects.page.SegDecPage;
 import com.mutua.test.utility.CargadorPropiedades;
 import com.mutua.test.utility.DriverFactory;
 import cucumber.api.Scenario;
@@ -19,10 +20,12 @@ public class Hooks {
         driver = new DriverFactory().getDriver();
     }
 
-    @Before("@GoHomePage")
+    @Before("@IrPaginaCotizacion")
     public void goLoginPage() throws MalformedURLException {
         driver = new DriverFactory().getDriver();
         driver.get((String)cargador.cargarPropiedades().get("urlCotizacion"));
+        SegDecPage decPage = new SegDecPage(driver);
+        decPage.calcularPrecio();
 
     }
 

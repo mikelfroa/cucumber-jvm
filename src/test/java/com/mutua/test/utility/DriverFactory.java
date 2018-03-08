@@ -1,5 +1,6 @@
 package com.mutua.test.utility;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -13,10 +14,6 @@ import java.net.URL;
 public class DriverFactory {
 
     private static WebDriver driver;
-    private static String browsername;
-    private static String browserversion;
-    private static String platform;
-    private CargadorPropiedades cargador = new CargadorPropiedades();
 
     public DriverFactory() throws MalformedURLException {
         initialize();
@@ -40,7 +37,7 @@ public class DriverFactory {
                     driver = new RemoteWebDriver(new URL(Constants.gridMachine), capabilities);
                     driver.manage().window().maximize();
                 }else if (driver == null){
-                    System.setProperty("webdriver.gecko.driver",(System.getProperty("user.dir") + cargador.cargarPropiedades().get("geckodriver")));
+                    WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     driver.manage().window().maximize();
                 }
@@ -51,7 +48,7 @@ public class DriverFactory {
                     driver = new RemoteWebDriver(new URL(Constants.gridMachine), capabilities);
                     driver.manage().window().maximize();
                 }else {
-                    System.setProperty("webdriver.chrome.driver", (System.getProperty("user.dir") + cargador.cargarPropiedades().get("chromedriver")));
+                    WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     driver.manage().window().maximize();
                 }
@@ -62,7 +59,7 @@ public class DriverFactory {
                     driver = new RemoteWebDriver(new URL(Constants.gridMachine), capabilities);
                     driver.manage().window().maximize();
                 }else {
-                    System.setProperty("webdriver.edge.driver", (System.getProperty("user.dir") + cargador.cargarPropiedades().get("edgedriver")));
+                    WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
                     driver.manage().window().maximize();
                 }
