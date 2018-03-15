@@ -5,4 +5,5 @@ Feature: Login
   Para tener toda la funcionalidad de usuario registrado
 
   Scenario: Login correcto
-    <Some interesting scenario steps here>
+    Given estoy en la pagina de login
+    When introduzco mi usuario "usuario_nombre"
