@@ -6,7 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GeneralUtils extends BasePage {
+public class GeneralUtils  {
 
     public static void waitForPageLoaded() throws InterruptedException {
         Thread.sleep(2000);

@@ -9,8 +9,8 @@ Característica: Cotización
   @Cotizacion
   Escenario: : Alta de Cotización donde tomador (persona física) es asegurado con 2º asegurado
     Dado estoy en la pagina de precarga de cotización
-    Y introduzco la fecha de nacimiento: 13, 02, 1981
-    Y introduzco el nif: "71215129E"
+    Y introduzco la fecha de nacimiento: 01, 01, 1980
+    Y introduzco el nif: "00000000A"
     Y selecciono el producto: "DECESOS COMPLETO"
     Y introduzco el codigo postal: "28045"
     Y selecciono que el tomador es también el asegurado
