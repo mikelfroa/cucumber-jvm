@@ -12,7 +12,9 @@
         <cucumber.version>1.2.4</cucumber.version>
         <selenium.version>3.8.1</selenium.version>
         <junit.version>4.12</junit.version>
-        <failsafe.maven.version>2.19.1</failsafe.maven.version>
+        <surefire.maven.version>2.21.0</surefire.maven.version>
+        <failsafe.maven.version>2.21.0</failsafe.maven.version>
+        <skipITs>true</skipITs>
         <compiler.maven.version>3.5.1</compiler.maven.version>
     </properties>
 
@@ -20,12 +22,8 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${compiler.maven.version}</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.maven.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -33,21 +31,20 @@
                 <version>${failsafe.maven.version}</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
+                    <skipITs>${skipITs}</skipITs>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>failsafe-integration-tests</id>
-                        <phase>integration-test</phase>
+                        <id>integration-tests</id>
                         <goals>
                             <goal>integration-test</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>failsafe-verify</id>
-                        <phase>verify</phase>
-                        <goals>
                             <goal>verify</goal>
                         </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -70,6 +67,15 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

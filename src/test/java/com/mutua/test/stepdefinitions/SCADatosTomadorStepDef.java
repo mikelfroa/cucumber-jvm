@@ -71,7 +71,7 @@ public class SCADatosTomadorStepDef {
     @Y("^acepto las condiciones generales$")
     public void aceptoLasCondicionesGenerales() throws InterruptedException {
         scaDatosTomadorPage.aceptoCondGen();
-        Thread.sleep(10000);
+        Thread.sleep(5000);
     }
 
     @Cuando("^calculo la tarificación$")
@@ -83,7 +83,7 @@ public class SCADatosTomadorStepDef {
     @Entonces("^estoy en la pagina de presupuesto$")
     public void estoyEnLaPaginaDePresupuesto() throws Throwable {
         GeneralUtils.waitForPageLoaded();
-        Assert.assertTrue("Estoy en la página de presupuesto", scaDatosTomadorPage.getURL().equalsIgnoreCase(Navigation.getTrunkURL() + "/action/cotizarDecesos"));
+        Assert.assertTrue("Estoy en la página de presupuesto", scaDatosTomadorPage.getURL().equalsIgnoreCase(Navigation.getTrunkURL() + "seguros-decesos/action/cotizarDecesos"));
 
     }
 

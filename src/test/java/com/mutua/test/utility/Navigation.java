@@ -8,13 +8,10 @@ public class Navigation extends BasePage {
 
     public static String getTrunkURL() {
         String env = System.getProperty("env");
-        if (env == null )
-            env = "a";
-        String trunk = (String)cargador.cargarPropiedades().get("urlHttp");
-        trunk +=  env;
-        trunk +=  cargador.cargarPropiedades().get("urlMutua");
+        if (env == null)
+            env = "";
 
-        return trunk;
+        return "https://www" + env + ".mutua.es/";
     }
 
     public static void goToPage(String page) {
