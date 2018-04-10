@@ -7,4 +7,5 @@ Feature: prueba integración jira
   Scenario: prueba correct
     Given escribo algo
     When pongo algo mas
+    And estoy seguro de lo que he puesto
     
